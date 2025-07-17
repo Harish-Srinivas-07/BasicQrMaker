@@ -1,37 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Basic Meta -->
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QR Code Generator - Mahalakshmi College</title>
-    <!-- Google Fonts -->
+    <title>QR Maker</title>
+    <meta name="author" content="Harish Srinivas" />
+    <meta
+      name="description"
+      content="Generate stylish and customizable QR codes with real-time preview. Built by Harish Srinivas."
+    />
+    <meta
+      name="keywords"
+      content="QR Code Generator, QR Maker, Harish Srinivas, customizable QR, free QR tool"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="icon"
+      href="https://img.icons8.com/sf-regular-filled/48/qr-code.png"
+      type="image/png"
+    />
+
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:title" content="QR Code Maker by Harish Srinivas" />
+    <meta
+      property="og:description"
+      content="A sleek, real-time QR code generator with customization features."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://github.com/Harish-Srinivas-07/" />
+    <meta
+      property="og:image"
+      content="https://img.icons8.com/sf-regular-filled/48/qr-code.png"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="QR Code Maker by Harish Srinivas" />
+    <meta
+      name="twitter:description"
+      content="Create and customize QR codes easily. Real-time updates."
+    />
+    <meta
+      name="twitter:image"
+      content="https://img.icons8.com/sf-regular-filled/48/qr-code.png"
+    />
+
+    <!-- Fonts & Libraries -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
       rel="stylesheet"
     />
-    <!--- QR Code CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <!-- Stylesheet -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <div class="wrapper">
-      <input type="text" id="userInput" placeholder="Enter some text or URL" />
-      <div class="options">
-        <select class="sizeOptions">
-          <option value="100" selected>100 px</option>
-          <option value="200">200 px</option>
-          <option value="300">300 px</option>
-        </select>
-        <input type="color" id="BGColor" class="color-inp" />
-        <input type="color" id="FGColor" class="color-inp" />
+    <div class="page-wrapper">
+      <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+          <h2 class="panel-title">QR Maker</h2>
+
+          <!-- Instruction -->
+          <p style="font-size: 0.9rem; color: #475569">
+            Select the type of content and customize your QR code below.
+          </p>
+          <p class="auto-update-note">
+            <em>*Changes are applied automatically in real-time.</em>
+          </p>
+
+          <!-- QR Type Selector -->
+          <div class="qr-types">
+            <div class="qr-type active" data-type="URL">URL</div>
+            <div class="qr-type" data-type="TEXT">TEXT</div>
+            <div class="qr-type" data-type="E-MAIL">E-MAIL</div>
+            <div class="qr-type" data-type="SMS">SMS</div>
+          </div>
+
+          <!-- Input Box -->
+          <div class="input-box">
+            <p>Enter your data:</p>
+            <input
+              type="text"
+              id="userInput"
+              placeholder="e.g. https://example.com"
+            />
+          </div>
+
+          <!-- Style & Color Accordion -->
+          <div class="accordion active" id="styleSection">
+            <div class="accordion-header">
+              STYLE & COLOR
+              <span class="arrow"></span>
+            </div>
+
+            <div class="accordion-content">
+              <!-- Instruction -->
+              <p
+                style="
+                  font-size: 0.85rem;
+                  color: #64748b;
+                  margin-bottom: 0.8rem;
+                "
+              >
+                Customize the look and feel of your QR code.
+              </p>
+
+              <!-- Colors -->
+              <div class="color-pickers-row">
+                <!-- Foreground -->
+                <div class="color-item">
+                  <div class="color-preview-wrapper">
+                    <input type="color" id="FGColor" value="#000000" />
+                  </div>
+                  <label for="FGColor">Foreground Color</label>
+                </div>
+
+                <!-- Background -->
+                <div class="color-item">
+                  <div class="color-preview-wrapper">
+                    <input type="color" id="BGColor" value="#ffffff" />
+                  </div>
+                  <label for="BGColor">Background Color</label>
+                </div>
+              </div>
+
+              <!-- Dot Style -->
+              <div class="shape-row">
+                <p class="shape-title">Dot Style</p>
+                <div class="shape-options" id="dotShapes">
+                  <button class="shape-button active" data-style="square">
+                    ■
+                  </button>
+                  <button class="shape-button" data-style="dots">●</button>
+                  <button class="shape-button" data-style="rounded">⬤</button>
+                </div>
+              </div>
+
+              <!-- Corner Style -->
+              <div class="shape-row">
+                <p class="shape-title">Corner Style</p>
+                <div class="shape-options" id="cornerShapes">
+                  <button class="shape-button active" data-style="square">
+                    ■
+                  </button>
+                  <button class="shape-button" data-style="rounded">●</button>
+                  <button class="shape-button" data-style="extra-rounded">
+                    ◯
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo Upload -->
+          <div class="logo-upload-label">
+            <small style="color: #64748b">
+              Upload a custom logo to appear in the center of your QR code.
+            </small>
+            <span id="uploadTrigger" class="upload-btn"
+              >Upload Center Logo</span
+            >
+            <input type="file" id="logoInput" accept="image/*" hidden />
+
+            <div class="logo-preview-wrapper" id="logoPreviewWrapper">
+              <img id="logoPreview" class="logo-preview" alt="Logo preview" />
+              <span id="removeLogo" class="remove-logo">&times;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+          <!-- QR Preview -->
+          <div class="qr-preview" id="qrContainer"></div>
+
+          <!-- Download -->
+          <div class="download-buttons">
+            <a id="downloadBtn" class="secondary">DOWNLOAD</a>
+          </div>
+        </div>
       </div>
-      <div class="box">
-        <button id="submit" disabled>Generate Qr</button>
-        <a href="#" id="download">Download Now</a>
-      </div>
-      <div class="container"></div>
     </div>
-    <!-- Script -->
+    <!-- Scripts -->
     <script src="script.js"></script>
   </body>
 </html>

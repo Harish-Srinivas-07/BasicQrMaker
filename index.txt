@@ -1,0 +1,5 @@
+QR Code Generator by Harish Srinivas
+Create stylish, customizable QR codes with real-time updates and live preview. 
+Supports colors, shapes, logos, and more — no download or refresh required.
+Visit: https://github.com/Harish-Srinivas-07/
+LinkedIN : https://www.linkedin.com/in/harishsrinivas-sr/
